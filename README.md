@@ -1,10 +1,9 @@
-# ROS-Home Service Robot
+# ROS-Autonomous Ball Chasing Bot
 
 ## Overview
-Home Service Robot is responsible for picking up virtual objects from a certain location and dropping them off at another location. The project implements SLAM using gmapping package and the 2D map generated from there is used for the primary tasks.
+The ball chaser node is responsible for tracking a ball in the camera frame and using a PID controller to chase the ball. It's a straight forward project I did to learn the basics of ROS.
 
-
-**Keywords:** gmapping, SLAM, localization, turtlebot, ROS
+**Keywords:** ROS, OpenCV, Gazebo, PID
 
 
 ### License
@@ -23,26 +22,9 @@ The packages has been tested under [ROS] Kinetic on Ubuntu 16.04.
 **Gazebo env**
 ![Example image](docs/gazebo_preview.png)
 
-**Rviz viz**
-![Example image](docs/rviz_preview.png)
-
-
 
 ## Installation
 
-### Installation from Packages
-
-Using the mentioned version of ROS and Ubuntu, make sure to install the dependecies for the following packages using:
-
-<!-- Or better, use `rosdep`: -->
-```
-sudo apt-get update
-source devel/setup.bash
-rosdep -i install gmapping
-rosdep -i install turtlebot_teleop
-rosdep -i install turtlebot_rviz_launchers
-rosdep -i install turtlebot_gazebo
-```
 ### Building from Source
 
 <!-- #### Dependencies
@@ -89,9 +71,9 @@ cd catkin_ws
 catkin_make
 source devel/setup.bash
 ```
-To create a new map using SLAM
+To launch and deploy robot in the world
 
-	./src/scripts/test_slam.sh
+	roslaunch my_robot world.launch
 
 
 <!-- ### Static code analysis
@@ -102,11 +84,12 @@ Run the static code analysis with
 
 ## Usage
 
-To run home service example
+To run ball chasing node
 
 ```
 cd catkin_ws
 catkin_make
 source devel/setup.bash
-./src/scripts/home_service.sh
+roslaunch my_robot world.roslaunch
+roslaunch ball_chaser ball_chaser
 ```
